@@ -40,6 +40,10 @@
     .slider__item-text {
       align-self: flex-end;
 
+      .active & {
+        transition: transform .6s ease .2s, opacity .6s ease .2s;
+      }
+
       @media (max-width: $mobile) and (orientation: landscape) {
         align-self: flex-start;
       }
@@ -96,6 +100,14 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+  opacity: 0;
+  transform: translateX(20px);
+
+  .active & {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform .5s ease, opacity .5s ease;
+  }
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
