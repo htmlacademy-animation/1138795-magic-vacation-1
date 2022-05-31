@@ -3987,8 +3987,8 @@ body.loaded .social-block__toggler::before {
   color: #a67ee5;
 }
 .social-block__toggler:hover::before, body .social-block--active .social-block__toggler::before {
-  width: 112.5%;
-  height: 112.5%;
+  transform: scale(1.25) translate(calc(-50% * 0.75), calc(-50% * 0.75));
+  transition: transform 0.5s cubic-bezier(0.21, 0.77, 0.62, 1.42);
 }
 .social-block__toggler:focus {
   color: #a67ee5;
