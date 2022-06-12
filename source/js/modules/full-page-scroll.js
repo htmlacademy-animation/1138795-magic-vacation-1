@@ -8,6 +8,7 @@ export default class FullPageScroll {
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.screenFiller = document.querySelector(`.screen-filler`);
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
@@ -52,14 +53,32 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-    this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
-    });
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    setTimeout(() => {
-      this.screenElements[this.activeScreen].classList.add(`active`);
-    }, 100);
+    const isCurrentScreenPrizes = this.screenElements[this.activeScreen].classList.contains(`screen--prizes`);
+    const screenStory = [...this.screenElements].find((screen) => screen.classList.contains(`screen--story`) && screen.classList.contains(`active`));
+
+    if (isCurrentScreenPrizes && screenStory) {
+      this.screenFiller.classList.add(`screen-filler--active`);
+
+      screenStory.classList.remove(`active`);
+      screenStory.addEventListener(`transitionend`, () => {
+        screenStory.classList.add(`screen--hidden`);
+        this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+        setTimeout(() => {
+          this.screenElements[this.activeScreen].classList.add(`active`);
+        }, 100);
+      }, {once: true});
+    } else {
+      this.screenFiller.classList.remove(`screen-filler--active`);
+
+      this.screenElements.forEach((screen) => {
+        screen.classList.add(`screen--hidden`);
+        screen.classList.remove(`active`);
+      });
+      this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+      setTimeout(() => {
+        this.screenElements[this.activeScreen].classList.add(`active`);
+      }, 100);
+    }
   }
 
   changeActiveMenuItem() {
