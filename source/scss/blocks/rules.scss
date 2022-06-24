@@ -160,13 +160,14 @@
     line-height: 5rem;
     text-align: center;
     animation: scale 0.6s cubic-bezier(.79,.37,.34,1.39);
+    animation-fill-mode: backwards;
 
     @keyframes scale {
       from {
-        transform: scale3d(0, 0, 0);
+        transform: scale(0);
       }
       to {
-        transform: scale3d(1, 1, 1);
+        transform: scale(1);
       }
     }
 
@@ -190,6 +191,7 @@
   p {
     margin: 0;
     animation: slide-in .6s ease-out .1s;
+    animation-fill-mode: backwards;
 
     @keyframes slide-in {
       from {
