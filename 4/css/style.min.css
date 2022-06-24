@@ -3135,13 +3135,14 @@ body.loaded .page-header__menu a.active::after {
   line-height: 5rem;
   text-align: center;
   animation: scale 0.6s cubic-bezier(0.79, 0.37, 0.34, 1.39);
+  animation-fill-mode: backwards;
 }
 @keyframes scale {
   from {
-    transform: scale3d(0, 0, 0);
+    transform: scale(0);
   }
   to {
-    transform: scale3d(1, 1, 1);
+    transform: scale(1);
   }
 }
 @media (max-width: 1024px) and (orientation: portrait) {
@@ -3165,6 +3166,7 @@ body.loaded .page-header__menu a.active::after {
 .rules__item p {
   margin: 0;
   animation: slide-in 0.6s ease-out 0.1s;
+  animation-fill-mode: backwards;
 }
 @keyframes slide-in {
   from {
